@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-demox
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/vaishnavigulhane19/k8s-argocd.git
+    targetRevision: HEAD
+    path: ./
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
